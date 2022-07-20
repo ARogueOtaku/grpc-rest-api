@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "nodemon .",
     "start": "node .",
-    "init": "npm install && mkdir generated"
+    "setup": "npm install && mkdir generated"
   },
   "keywords": [],
   "author": "Amit Das",
