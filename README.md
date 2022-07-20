@@ -2,9 +2,8 @@
 
 ## Getting Started
 
-1. Run `npm install`
-2. Run `npm run proto:gen`
-3. Run `npm start` to start both servers.
+1. Run `npm init`
+2. Run `npm start` to start both servers.
    > Rest Server runs on Port 8080 and gRPC Server runs on Port 9090 by default. This can be altered from the `src/index.js` file.
 
 ## Rest Endpoints
