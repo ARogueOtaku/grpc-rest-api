@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+message Empty {}
+
+message Word {
+    string word = 1;
+}
+
+message Words {
+    repeated Word words = 1;
+}
+message WordsRequest {
+    int32 number = 1;
+}
+
+service WordGenerator {
+    rpc generateSingle (Empty) returns (Word);
+    rpc generateMultiple (WordsRequest) returns (Words);
+}
