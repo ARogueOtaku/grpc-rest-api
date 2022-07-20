@@ -3,7 +3,6 @@ const path = require("path");
 const grpc = require("@grpc/grpc-js");
 const protoLoader = require("@grpc/proto-loader");
 const fs = require("fs");
-const WordsSchema = require("../resources/generated/words_pb");
 
 const protoFilePath = path.join(__dirname, "../resources/words.proto");
 const protoPackageDefinition = protoLoader.loadSync(protoFilePath);
@@ -23,16 +22,11 @@ const generateMultiple = (call, callback) => {
   const generatedWords = Array.from({ length: number }, () => ({
     word: words[Math.floor(Math.random() * words.length)],
   }));
-
-  const protoWords = new WordsSchema.Words();
-  generatedWords.forEach((word) => {
-    const protoWord = new WordsSchema.Word();
-    protoWord.setWord(word);
-    protoWords.addWords(protoWord);
-  });
   fs.writeFileSync(
     path.join(__dirname, "../generated/grpcOut"),
-    protoWords.serializeBinary()
+    protoPackageDefinition.WordGenerator.generateMultiple.responseSerialize({
+      words: generatedWords,
+    })
   );
   callback(null, { words: generatedWords });
 };
